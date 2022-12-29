@@ -73,7 +73,7 @@ class FirebaseServices {
   }
 
   Future<void> sendVerificationEmailAndNavigate(BuildContext context) async {
-    User user = await FirebaseAuth.instance.currentUser!;
+    User user = FirebaseAuth.instance.currentUser!;
     try {
       if (!user.emailVerified) {
         await user.sendEmailVerification();

@@ -20,10 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       routes: {
         SignUpPage.routeName: (context) => SignUpPage(),
         HomePage.routeName: (context) => HomePage(),
-        VerificatonPage.routeName: (context) => VerificatonPage(),
+        VerificatonPage.routeName: (context) => const VerificatonPage(),
       },
       theme: ThemeData(
         primaryColor: Colors.purple,

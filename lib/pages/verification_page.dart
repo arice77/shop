@@ -12,10 +12,9 @@ class VerificatonPage extends StatefulWidget {
 }
 
 class _VerificatonPageState extends State<VerificatonPage> {
-  FirebaseServices _firebaseServices = FirebaseServices();
+  final FirebaseServices _firebaseServices = FirebaseServices();
   @override
   void initState() {
-    print('hey');
     _firebaseServices.sendVerificationEmailAndNavigate(context);
 
     // TODO: implement initState
@@ -37,18 +36,19 @@ class _VerificatonPageState extends State<VerificatonPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Verifying Email: ',
                   style: TextStyle(fontSize: 15),
                 ),
                 GestureDetector(
                   onTap: () async {
                     await FirebaseAuth.instance.currentUser!.delete();
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pop();
                   },
                   child: Text(
                     args.emailAddress,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline),
@@ -59,10 +59,10 @@ class _VerificatonPageState extends State<VerificatonPage> {
                       await FirebaseAuth.instance.currentUser!.delete();
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(Icons.edit))
+                    icon: const Icon(Icons.edit))
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ElevatedButton.icon(
@@ -70,8 +70,8 @@ class _VerificatonPageState extends State<VerificatonPage> {
                 backgroundColor: MaterialStateProperty.all(Colors.purple),
               ),
               onPressed: () {},
-              icon: Icon(Icons.email),
-              label: Text('Resend Email'),
+              icon: const Icon(Icons.email),
+              label: const Text('Resend Email'),
             )
           ]),
     );

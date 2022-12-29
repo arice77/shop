@@ -9,6 +9,8 @@ class Email {
 }
 
 class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
   @override
   _SignUpPageState createState() => _SignUpPageState();
   static String routeName = '/sign-up';
@@ -30,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
       _formKey.currentState!.save();
       if (_isLogin) {
         if (await firebaseServices.emailSignIn(
-                email.text, password.text, context) !=
+                email.text.trim(), password.text, context) !=
             null) {
           Navigator.pushReplacementNamed(context, HomePage.routeName);
         }
