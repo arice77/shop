@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop/pages/homepage.dart';
+import 'package:shop/pages/productpage.dart';
 import 'package:shop/pages/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shop/pages/verification_page.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
+        ProductPage.routeName: (context) => ProductPage(),
         SignUpPage.routeName: (context) => SignUpPage(),
         HomePage.routeName: (context) => HomePage(),
         VerificatonPage.routeName: (context) => const VerificatonPage(),

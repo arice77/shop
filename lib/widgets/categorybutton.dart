@@ -7,7 +7,7 @@ class CategoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: null,
       child: Text(
         categoryName,
         style: TextStyle(fontSize: 17, color: Colors.grey[600]),

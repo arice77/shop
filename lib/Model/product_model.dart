@@ -17,26 +17,26 @@ class Productss {
     this.price,
     this.description,
     this.category,
-    this.images,
-    this.categoryId,
+    this.image,
+    this.rating,
   });
 
   int? id;
   String? title;
-  int? price;
+  double? price;
   String? description;
   Category? category;
-  List<String>? images;
-  int? categoryId;
+  String? image;
+  Rating? rating;
 
   factory Productss.fromJson(Map<String, dynamic> json) => Productss(
         id: json["id"],
         title: json["title"],
-        price: json["price"],
+        price: json["price"].toDouble(),
         description: json["description"],
-        category: Category.fromJson(json["category"]),
-        images: List<String>.from(json["images"].map((x) => x)),
-        categoryId: json["categoryId"] == null ? null : json["categoryId"],
+        category: categoryValues.map[json["category"]],
+        image: json["image"],
+        rating: Rating.fromJson(json["rating"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,50 +44,40 @@ class Productss {
         "title": title,
         "price": price,
         "description": description,
-        "category": category!.toJson(),
-        "images": List<dynamic>.from(images!.map((x) => x)),
-        "categoryId": categoryId == null ? null : categoryId,
+        "category": categoryValues.reverse[category],
+        "image": image,
+        "rating": rating!.toJson(),
       };
 }
 
-class Category {
-  Category({
-    this.id,
-    this.name,
-    this.image,
-    this.keyLoremSpace,
+enum Category { MEN_S_CLOTHING, JEWELERY, ELECTRONICS, WOMEN_S_CLOTHING }
+
+final categoryValues = EnumValues({
+  "electronics": Category.ELECTRONICS,
+  "jewelery": Category.JEWELERY,
+  "men's clothing": Category.MEN_S_CLOTHING,
+  "women's clothing": Category.WOMEN_S_CLOTHING
+});
+
+class Rating {
+  Rating({
+    this.rate,
+    this.count,
   });
 
-  int? id;
-  Name? name;
-  String? image;
-  String? keyLoremSpace;
+  double? rate;
+  int? count;
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-        id: json["id"],
-        name: nameValues.map[json["name"]],
-        image: json["image"],
-        keyLoremSpace:
-            json["keyLoremSpace"] == null ? null : json["keyLoremSpace"],
+  factory Rating.fromJson(Map<String, dynamic> json) => Rating(
+        rate: json["rate"].toDouble(),
+        count: json["count"],
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": nameValues.reverse[name],
-        "image": image,
-        "keyLoremSpace": keyLoremSpace == null ? null : keyLoremSpace,
+        "rate": rate,
+        "count": count,
       };
 }
-
-enum Name { FURNITURE, SHOES, CLOTHES, OTHERS, ELECTRONICS }
-
-final nameValues = EnumValues({
-  "Clothes": Name.CLOTHES,
-  "Electronics": Name.ELECTRONICS,
-  "Furniture": Name.FURNITURE,
-  "Others": Name.OTHERS,
-  "Shoes": Name.SHOES
-});
 
 class EnumValues<T> {
   Map<String, T> map;
